@@ -56,7 +56,32 @@ run_this = PythonOperator(
 </ul>
 </li>
 </ol>
-
+<p class="" data-start="2810" data-end="2908"><strong data-start="2810" data-end="2818"><code data-start="2812" data-end="2816">ds</code></strong>: This is the execution date (as a string), passed as part of the context to the function.</p>
+<p class="" data-start="2911" data-end="3058"><strong data-start="2911" data-end="2923"><code data-start="2913" data-end="2921">kwargs</code></strong>: This is a dictionary that contains additional runtime context information, such as task instance, execution date, and other metadata.</p>
+<p class="" data-start="3060" data-end="3207"><code data-start="3077" data-end="3106">print_context(ds, **kwargs)</code> prints the <code data-start="3118" data-end="3126">kwargs</code> dictionary, which contains the context information, and the execution date <code data-start="3202" data-end="3206">ds</code>.</p>
 <h2>Passing in arguments</h2>
 <p>Use the&nbsp;<code class="docutils literal notranslate"><span class="pre">op_args</span></code>&nbsp;and&nbsp;<code class="docutils literal notranslate"><span class="pre">op_kwargs</span></code>&nbsp;arguments to pass additional arguments to the Python callable.</p>
 <p>Example:</p>
+
+```python
+from airflow.operators.python import PythonOperator
+from pprint import pprint
+from datetime import datetime
+
+def print_context(ds, **kwargs):
+    pprint(kwargs)  # Prints the kwargs dictionary, which includes Airflow context
+    print(ds)  # Prints the execution date (ds)
+    return 'Whatever you return gets printed in the logs'
+
+# Assuming you have a DAG defined already, for example:
+dag = DAG('example_dag', start_date=datetime(2023, 4, 21))
+
+# Define the task using PythonOperator and pass additional kwargs using op_kwargs
+run_this = PythonOperator(
+    task_id='print_the_context',
+    provide_context=True,  # Automatically passes Airflow context to the function
+    python_callable=print_context,
+    op_kwargs={'custom_param_1': 'value1', 'custom_param_2': 'value2'},  # Adding custom keyword args
+    dag=dag,
+)
+```
