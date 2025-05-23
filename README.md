@@ -150,3 +150,19 @@ run_this = PythonOperator(
 </li>
 </ul>
 <p class="" data-start="2006" data-end="2053">&nbsp;</p>
+
+### Understanding and Demonstrating the Use of op_kwargs in Airflow Tasks
+
+<p>The color-coded sections on the right-hand side (code) correspond to the similarly colored elements on the left-hand side in the Airflow UI, illustrating how each piece of code maps to its representation in the interface.</p>
+
+
+
+
+<img width="1526" alt="image" src="https://github.com/user-attachments/assets/6df1bbeb-4d9c-44f3-b4b6-8a318e8de3ff" />
+
+
+<img width="1305" alt="image" src="https://github.com/user-attachments/assets/08484542-6857-459f-b517-9704e0ab7d6a" />
+
+![image](https://github.com/user-attachments/assets/e7f1901d-461e-42f2-84a1-2b91bbc93bb1)
+
+
